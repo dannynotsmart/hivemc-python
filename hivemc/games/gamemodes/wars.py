@@ -1,4 +1,4 @@
-from games.pvpgame import PvpGame
+from ..pvpgame import PvpGame
 
 
 class TreasureWars(PvpGame):

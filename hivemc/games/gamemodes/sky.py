@@ -1,4 +1,5 @@
-from games.pvpgame import PvpGame
+from ..pvpgame import PvpGame
+
 
 class Skywars(PvpGame):
     """Data for Skywars"""
@@ -19,7 +20,7 @@ class Skywars(PvpGame):
         spells_used: int
     ):
         super().__init__(
-            name = "wars",
+            name = "sky",
             monthly = monthly,
             xp = xp,
             played = played,

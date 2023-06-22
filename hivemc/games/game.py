@@ -1,4 +1,4 @@
-from gameinfo import GameInfo
+from .gameinfo import GameInfo
 from datetime import datetime
 
 import math
