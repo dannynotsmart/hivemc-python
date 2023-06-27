@@ -9,6 +9,7 @@ class PvpGame(Game):
         self,
         *,
         name: str, 
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -19,6 +20,7 @@ class PvpGame(Game):
     ):
         super().__init__(
             name = name,
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,
@@ -76,3 +78,6 @@ class PvpGame(Game):
             float: The deaths to played games ratio.
         """
         return round(self.deaths / self.played, 2)
+    
+    def __str__(self) -> str:
+        return str(super()) + f"\nKills: {self.kills}\nDeaths: {self.deaths}\nKDR: {self.kdr}\n"

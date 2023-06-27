@@ -8,6 +8,7 @@ class Deathrun(PvpGame):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -20,6 +21,7 @@ class Deathrun(PvpGame):
     ):
         super().__init__(
             name = "dr",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

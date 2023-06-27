@@ -8,6 +8,7 @@ class TreasureWars(PvpGame):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -21,6 +22,7 @@ class TreasureWars(PvpGame):
     ):
         super().__init__(
             name = "wars",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

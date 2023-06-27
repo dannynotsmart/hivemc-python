@@ -8,6 +8,7 @@ class SurvivalGames(PvpGame):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -21,6 +22,7 @@ class SurvivalGames(PvpGame):
     ):
         super().__init__(
             name = "sg",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

@@ -18,6 +18,7 @@ class TheBridge(PvpGame):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -30,6 +31,7 @@ class TheBridge(PvpGame):
         
         super().__init__(
             name = "bridge",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

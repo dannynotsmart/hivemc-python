@@ -8,6 +8,7 @@ class GroundWars(PvpGame):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -21,6 +22,7 @@ class GroundWars(PvpGame):
     ):
         super().__init__(
             name = "ground",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

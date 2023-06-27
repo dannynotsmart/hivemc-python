@@ -8,6 +8,7 @@ class BlockDrop(Game):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -20,6 +21,7 @@ class BlockDrop(Game):
     ):
         super().__init__(
             name = "drop",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

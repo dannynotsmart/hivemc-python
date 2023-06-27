@@ -8,6 +8,7 @@ class HideAndSeek(PvpGame):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -20,6 +21,7 @@ class HideAndSeek(PvpGame):
     ):
         super().__init__(
             name = "hide",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

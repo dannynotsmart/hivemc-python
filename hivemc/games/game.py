@@ -24,6 +24,7 @@ class Game:
 
     __slots__ = (
         "_name",
+        "_UUID",
         "_monthly",
         "_xp",
         "_played",
@@ -33,7 +34,8 @@ class Game:
     def __init__(
         self,
         *,
-        name: str, 
+        name: str,
+        UUID: str, 
         monthly: bool, # True if data is monthly, False if data is alltime
         xp: int,
         played: int, 
@@ -41,6 +43,7 @@ class Game:
         first_played: int
     ):
         self._name = name
+        self._UUID = UUID
         self._gamemode = gamemodes.get(name)
         self._monthly = monthly
         self._xp = xp
@@ -57,6 +60,14 @@ class Game:
             str: The abbreviated name of the gamemode
         """
         return self._name
+    
+    @property
+    def uuid(self) -> str:
+        """The Universal Unique Identifier (UUID) of the player.
+
+        Returns:
+            str: The UUID of the player.
+        """
         
     @property
     def gamemode(self) -> GameInfo:
@@ -161,7 +172,7 @@ class Game:
             return 1
     
     def __str__(self) -> str:
-        return str(self.gamemode)
+        return f"{self.type} Statistics for {self.gamemode}\nFirst Played: {self.first_played}\nXP Gained: {self.xp}\nLevel: {self.getLevel()}\n\nTotal Games Played: {self.played}\nVictories: {self.victories}\nLosses: {self.losses}\nWLR: {self.wlr}\n" 
         
     def getLevel(self) -> float:
         """The approximate lexel the player is in the gamemode.
@@ -203,7 +214,7 @@ class Game:
             level = flatten_level + (xp - (increment * math.pow(flatten_level - 1, 2) + (flatten_level - 1) * increment)) / ((flatten_level - 1) * increment * 2)
         
         return level
-        
+    
     @classmethod
     def from_api(cls, name: str, monthly: bool, data: dict):
         """Returns a `Game` instance from the data provided by the API

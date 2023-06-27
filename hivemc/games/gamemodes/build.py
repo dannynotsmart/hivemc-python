@@ -8,6 +8,7 @@ class JustBuild(Game):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -21,6 +22,7 @@ class JustBuild(Game):
     ):
         super().__init__(
             name = "build",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

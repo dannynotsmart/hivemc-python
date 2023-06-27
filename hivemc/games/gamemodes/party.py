@@ -8,6 +8,7 @@ class BlockParty(Game):
     def __init__(
         self,
         *,
+        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -18,6 +19,7 @@ class BlockParty(Game):
     ):
         super().__init__(
             name = "party",
+            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,
