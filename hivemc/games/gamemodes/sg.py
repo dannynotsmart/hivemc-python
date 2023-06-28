@@ -8,6 +8,7 @@ class SurvivalGames(PvpGame):
     def __init__(
         self,
         *,
+        name: str,
         UUID: str,
         monthly: bool,
         xp: int,

@@ -80,4 +80,4 @@ class PvpGame(Game):
         return round(self.deaths / self.played, 2)
     
     def __str__(self) -> str:
-        return str(super()) + f"\nKills: {self.kills}\nDeaths: {self.deaths}\nKDR: {self.kdr}\n"
+        return super().__str__() + f"\nKills: {self.kills}\nDeaths: {self.deaths}\nKDR: {self.kdr}\n"

@@ -18,6 +18,7 @@ class TheBridge(PvpGame):
     def __init__(
         self,
         *,
+        name: str,
         UUID: str,
         monthly: bool,
         xp: int,
@@ -51,3 +52,6 @@ class TheBridge(PvpGame):
             int: Number of goals scored by player.
         """
         return self._goals
+    
+    def __str__(self) -> str:
+        return super().__str__() + f"\nGoals: {self.goals}\n"

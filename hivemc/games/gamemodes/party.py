@@ -8,6 +8,7 @@ class BlockParty(Game):
     def __init__(
         self,
         *,
+        name: str,
         UUID: str,
         monthly: bool,
         xp: int,

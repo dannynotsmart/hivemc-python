@@ -3,24 +3,23 @@ from datetime import datetime
 
 import math
 
-    
-gamemodes = {
-    "wars": GameInfo("Treasure Wars", "wars", 150, 52, 100),
-    "dr": GameInfo("Deathrun", "dr", 200, 42, 75),
-    "hide": GameInfo("Hide And Seek", "hide", 100, 100, 50),
-    "sg": GameInfo("Survival Games", "sc", 150, 150, 30),
-    "murder": GameInfo("Murder Mystery", "murder", 100, 82, 100),
-    "sky": GameInfo("Skywars", "sky", 150, 52, 75),
-    "ctf": GameInfo("Capture The Flag", "ctf", 150, 150, 20),
-    "drop": GameInfo("Block Drop", "drop", 150, 22, 25),
-    "ground": GameInfo("Ground Wars", "ground", 150, 150, 20),
-    "build": GameInfo("Just Build", "build", 100, 100, 20),
-    "party": GameInfo("Block Party", "party", 150, 150, 25),
-    "bridge": GameInfo("Bridge", "bridge", 0, 0, 20)
-}
-
 class Game:
     """Base class for any gamemode. Ideally, `from_api` should always be used in child classes, and this class should not be manually instantiated."""
+
+    gamemodes = {
+        "wars": GameInfo("Treasure Wars", "wars", 150, 52, 100),
+        "dr": GameInfo("Deathrun", "dr", 200, 42, 75),
+        "hide": GameInfo("Hide And Seek", "hide", 100, 100, 50),
+        "sg": GameInfo("Survival Games", "sc", 150, 150, 30),
+        "murder": GameInfo("Murder Mystery", "murder", 100, 82, 100),
+        "sky": GameInfo("Skywars", "sky", 150, 52, 75),
+        "ctf": GameInfo("Capture The Flag", "ctf", 150, 150, 20),
+        "drop": GameInfo("Block Drop", "drop", 150, 22, 25),
+        "ground": GameInfo("Ground Wars", "ground", 150, 150, 20),
+        "build": GameInfo("Just Build", "build", 100, 100, 20),
+        "party": GameInfo("Block Party", "party", 150, 150, 25),
+        "bridge": GameInfo("Bridge", "bridge", 0, 0, 20)
+    }
 
     __slots__ = (
         "_name",
@@ -44,13 +43,11 @@ class Game:
     ):
         self._name = name
         self._UUID = UUID
-        self._gamemode = gamemodes.get(name)
         self._monthly = monthly
         self._xp = xp
         self._played = played
         self._victories = victories
         self._first_played = first_played
-        self._dt_first_played = datetime.from_timestamp(first_played)
         
     @property
     def name(self) -> str:
@@ -76,7 +73,7 @@ class Game:
         Returns:
             GameInfo: Holds information about the gamemodes
         """
-        return self._gamemode
+        return self.gamemodes.get(self.name)
         
     @property
     def monthly(self) -> bool:
@@ -121,7 +118,7 @@ class Game:
         Returns:
             str: Formal format of the date and time of when the gamemode is first played
         """
-        return self.dt_first_played.strftime("%A, %B %-m, %Y | %-I:%M:%S %p")
+        return self.dt_first_played.strftime("%A, %B %m, %Y | %I:%M:%S %p")
         
     @property
     def dt_first_played(self) -> datetime:
@@ -130,7 +127,7 @@ class Game:
         Returns:
             datetime: Datetime object of when they first played.
         """
-        return self._dt_first_played
+        return datetime.fromtimestamp(self._first_played)
         
     @property
     def abbr_first_played(self) -> str:
