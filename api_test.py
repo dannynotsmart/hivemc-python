@@ -1,16 +1,16 @@
-from hivemc.games import TheBridge
+from hivemc import TreasureWars as testclass
 import requests
 
 # The purpose of this file is to ensure that the API works with the data structures.
+# This is NOT how you are supposed to use this library, this file only exists for testing purposes.
 
 username = "DqnnyRocko"
-game = "bridge"
-monthly = False
+game = "wars"
 
-url = f"https://api.playhive.com/v0/game/{'monthly' if monthly else 'all'}/{game}/{username}"
-print(url)
+url = f"https://api.playhive.com/v0/game/all/{game}/{username}"
+
 r = requests.get(url)
-print(r.json())
-bridge = TheBridge.from_api("bridge", monthly, r.json())
 
-print(bridge)
+api = testclass.from_api(r.json())
+
+print(api)

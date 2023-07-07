@@ -70,3 +70,16 @@ class BlockDrop(Game):
             int: The number of vaults used.
         """
         return self._vaults_used
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nDeaths: {self.deaths}\n"
+            f"Blocks Destroyed: {self.blocks_destroyed}\n"
+            f"Powerups Collected: {self.powerups_collected}\n"
+            f"Vaults Used: {self.vaults_used}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("drop", False, data)

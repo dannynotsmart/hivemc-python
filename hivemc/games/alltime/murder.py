@@ -89,8 +89,18 @@ class MurderMystery(PvpGame):
     def getRawLevel(self) -> float:
         return self.getLevel() + self.prestige * 100
     
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nCoins Collected: {self.coins}\n"
+            f"Murders: {self.murders}\n"
+            f"Murderer Eliminations: {self.murderer_eliminations}\n"
+            f"Unncapped XP: {self.uncapped_xp}\n"
+            f"Prestige: {self.prestige}\n"
+        )
+    
     @classmethod
-    def from_api(cls, name: str, monthly: bool, data: dict):
+    def from_api(cls, data: dict):
         """Returns a `Game` instance from the data provided by the API
 
         Args:
@@ -102,4 +112,4 @@ class MurderMystery(PvpGame):
             Game: `Game` instance that holds the data.
         """
         data["kills"] = data["murders"] + data["murderer_eliminations"]
-        return super().from_api(name, monthly, data)
+        return super().from_api("murder", False, data)

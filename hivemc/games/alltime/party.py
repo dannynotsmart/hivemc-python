@@ -48,3 +48,14 @@ class BlockParty(Game):
             int: The number of rounds survived.
         """
         return self._rounds_survived
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nPowerups Collected: {self.powerups_collected}\n"
+            f"Rounds Survived: {self.rounds_survived}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("party", False, data)

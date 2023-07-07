@@ -169,7 +169,16 @@ class Game:
             return 1
     
     def __str__(self) -> str:
-        return f"{self.type} Statistics for {self.gamemode}\nFirst Played: {self.first_played}\nXP Gained: {self.xp}\nLevel: {self.getLevel()}\n\nTotal Games Played: {self.played}\nVictories: {self.victories}\nLosses: {self.losses}\nWLR: {self.wlr}\n" 
+        return (
+            f"{self.type} Statistics for {self.gamemode}\n"
+            f"First Played: {self.first_played}\n"
+            f"XP Gained: {self.xp}\n"
+            f"Level: {self.getLevel()}\n\n"
+            f"Total Games Played: {self.played}\n"
+            f"Victories: {self.victories}\n"
+            f"Losses: {self.losses}\n"
+            f"WLR: {self.wlr}\n"
+        )
         
     def getLevel(self) -> float:
         """The approximate lexel the player is in the gamemode.

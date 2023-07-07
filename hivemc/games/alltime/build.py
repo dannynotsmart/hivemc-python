@@ -37,13 +37,14 @@ class JustBuild(Game):
         self._rating_okay_received = rating_okay_received
         self._rating_great_received = rating_great_received
 
-        self.ratings = {
-            "good": rating_good_received,
-            "love": rating_love_received,
-            "meh": rating_meh_received,
-            "okay": rating_okay_received,
-            "great": rating_great_received
-        }
+    @property
+    def ratings(self) -> int:
+        """The total amount of ratings received.
+
+        Returns:
+            int: The total amount of ratings received.
+        """
+        return self.good + self.love + self.meh + self.okay + self.great
 
     @property
     def good(self) -> int:
@@ -61,7 +62,7 @@ class JustBuild(Game):
         Returns:
             int: Amount of `Love` ratings received.
         """
-        return self.rating_love_received
+        return self._rating_love_received
     
     @property
     def meh(self) -> int:
@@ -70,7 +71,7 @@ class JustBuild(Game):
         Returns:
             int: Amount of `Meh` ratings received.
         """
-        return self.rating_meh_received
+        return self._rating_meh_received
     
     @property
     def okay(self) -> int:
@@ -79,7 +80,7 @@ class JustBuild(Game):
         Returns:
             int: Amount of `Okay` ratings received.
         """
-        return self.rating_okay_received
+        return self._rating_okay_received
     
     @property
     def great(self) -> int:
@@ -88,15 +89,19 @@ class JustBuild(Game):
         Returns:
             int: Amount of `Great` ratings received.
         """
-        return self.rating_great_received
+        return self._rating_great_received
     
-    def getRating(self, rating: str) -> int:
-        """Get the amount of specific rating received.
-
-        Args:
-            rating (str): The rating (e.g. Good)
-
-        Returns:
-            int: The amount of rating received for that rating.
-        """
-        return self.ratings.get(rating.lower())
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nRatings Received: {self.ratings}\n"
+            f"Meh: {self.meh}\n"
+            f"Okay: {self.okay}\n"
+            f"Good: {self.good}\n"
+            f"Great: {self.great}\n"
+            f"Love: {self.love}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("build", False, data)

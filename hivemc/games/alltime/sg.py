@@ -63,3 +63,15 @@ class SurvivalGames(PvpGame):
             int: Number of cows looted.
         """
         return self._cows
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nCrates Looted: {self.crates}\n"
+            f"Deathmatches Played: {self.deathmatches}\n"
+            f"Cows Looted: {self.cows}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("sg", False, data)

@@ -54,4 +54,11 @@ class TheBridge(PvpGame):
         return self._goals
     
     def __str__(self) -> str:
-        return super().__str__() + f"\nGoals: {self.goals}\n"
+        return (
+            f"{super().__str__()}"
+            f"\nGoals: {self.goals}\n"
+        )
+        
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("bridge", False, data)

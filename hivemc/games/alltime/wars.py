@@ -87,3 +87,16 @@ class TreasureWars(PvpGame):
         
     def getRawLevel(self) -> float:
         return self.getLevel() + self.prestige * 100
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nFinal Kills: {self.final_kills}\n"
+            f"FKDR: {self.fkdr}\n"
+            f"Treasures Destroyed: {self.treasure_destroyed}\n"
+            f"Prestige: {self.prestige}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("wars", False, data)

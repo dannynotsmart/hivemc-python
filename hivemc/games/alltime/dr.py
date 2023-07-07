@@ -52,3 +52,14 @@ class Deathrun(PvpGame):
             int: Number of traps activated.
         """
         return self._activated
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nCheckpoints Passed: {self.checkpoints}\n"
+            f"Traps Activated: {self.activated}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("dr", False, data)

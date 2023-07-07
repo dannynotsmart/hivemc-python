@@ -53,8 +53,15 @@ class HideAndSeek(PvpGame):
         """
         return self._seeker_kills
     
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nKills as Hider: {self.hider_kills}\n"
+            f"Kills as Seeker: {self.seeker_kills}\n"
+        )
+    
     @classmethod
-    def from_api(cls, name: str, monthly: bool, data: dict):
+    def from_api(cls, data: dict):
         """Returns a `Game` instance from the data provided by the API
 
         Args:
@@ -66,4 +73,4 @@ class HideAndSeek(PvpGame):
             Game: `Game` instance that holds the data.
         """
         data["kills"] = data["hider_kills"] + data["seeker_kills"]
-        return super().from_api(name, monthly, data)
+        return super().from_api("hide", False, data)

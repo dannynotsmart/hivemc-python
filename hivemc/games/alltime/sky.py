@@ -63,3 +63,15 @@ class Skywars(PvpGame):
             int: Number of spells used.
         """
         return self._spells_used
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nMystery Chests Destroyed: {self.mystery_chests_destroyed}\n"
+            f"Ores Mined: {self.ores_mined}\n"
+            f"Spells Used: {self.spells_used}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("sky", False, data)

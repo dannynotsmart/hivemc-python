@@ -63,3 +63,15 @@ class GroundWars(PvpGame):
             int: Number of projectiles fired.
         """
         return self._projectiles_fired
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nBlocks Destroyed: {self.blocks_destroyed}\n"
+            f"Blocks Placed: {self.blocks_placed}\n"
+            f"Projectiles Fired: {self.projectiles_fired}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("ground", False, data)

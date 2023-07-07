@@ -63,3 +63,15 @@ class CaptureTheFlag(PvpGame):
             int: Number of flags returned by player.
         """
         return self._flags_returned
+    
+    def __str__(self) -> str:
+        return (
+            f"{super().__str__()}"
+            f"\nAssists: {self.assists}\n"
+            f"Flags Captured: {self.flags_captured}\n"
+            f"Flags Returned: {self.flags_returned}\n"
+        )
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        return super().from_api("ctf", False, data)
