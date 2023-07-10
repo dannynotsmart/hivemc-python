@@ -1,16 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
 
-class TreasureWars(PvpGame):
+class TreasureWars(AllTimePvpGame):
     """Data for Treasure Wars"""
-    __slots__ = PvpGame.__slots__ + ("_final_kills", "_treasure_destroyed", "_prestige")
+    __slots__ = AllTimePvpGame.__slots__ + ("_final_kills", "_treasure_destroyed", "_prestige")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -24,7 +22,6 @@ class TreasureWars(PvpGame):
         super().__init__(
             name = "wars",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -96,7 +93,3 @@ class TreasureWars(PvpGame):
             f"Treasures Destroyed: {self.treasure_destroyed}\n"
             f"Prestige: {self.prestige}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("wars", False, data)

@@ -1,16 +1,14 @@
-from ..game import Game
+from .game import AllTimeGame
 
 
-class JustBuild(Game):
+class JustBuild(AllTimeGame):
     """Data for Just Build"""
-    __slots__ = Game.__slots__ + ("_rating_good_received", "_rating_love_received", "_rating_meh_received", "_rating_okay_received", "_rating_great_received")
+    __slots__ = AllTimeGame.__slots__ + ("_rating_good_received", "_rating_love_received", "_rating_meh_received", "_rating_okay_received", "_rating_great_received")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -24,7 +22,6 @@ class JustBuild(Game):
         super().__init__(
             name = "build",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -101,7 +98,3 @@ class JustBuild(Game):
             f"Great: {self.great}\n"
             f"Love: {self.love}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("build", False, data)

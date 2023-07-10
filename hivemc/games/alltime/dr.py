@@ -1,16 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
 
-class Deathrun(PvpGame):
+class Deathrun(AllTimePvpGame):
     """Data for Deathrun"""
-    __slots__ = PvpGame.__slots__ + ("_checkpoints", "_activated")
+    __slots__ = AllTimePvpGame.__slots__ + ("_checkpoints", "_activated")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -23,7 +21,6 @@ class Deathrun(PvpGame):
         super().__init__(
             name = "dr",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -59,7 +56,3 @@ class Deathrun(PvpGame):
             f"\nCheckpoints Passed: {self.checkpoints}\n"
             f"Traps Activated: {self.activated}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("dr", False, data)

@@ -1,26 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
-{
-  "UUID": "c2805b17-7714-39d4-89ca-9b135ed6df1b",
-  "xp": 51284,
-  "played": 4,
-  "victories": 3,
-  "first_played": 1654297120,
-  "deaths": 10,
-  "goals": 6,
-  "kills": 10
-}
 
-class TheBridge(PvpGame):
+class TheBridge(AllTimePvpGame):
     """Data for The Bridge"""
-    __slots__ = PvpGame.__slots__ + ("_goals",)
+    __slots__ = AllTimePvpGame.__slots__ + ("_goals",)
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -33,7 +21,6 @@ class TheBridge(PvpGame):
         super().__init__(
             name = "bridge",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -58,7 +45,3 @@ class TheBridge(PvpGame):
             f"{super().__str__()}"
             f"\nGoals: {self.goals}\n"
         )
-        
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("bridge", False, data)

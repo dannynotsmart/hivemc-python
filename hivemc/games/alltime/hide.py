@@ -1,16 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
 
-class HideAndSeek(PvpGame):
+class HideAndSeek(AllTimePvpGame):
     """Data for Hide and Seek"""
-    __slots__ = PvpGame.__slots__ + ("_hider_kills", "_seeker_kills")
+    __slots__ = AllTimePvpGame.__slots__ + ("_hider_kills", "_seeker_kills")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -23,7 +21,6 @@ class HideAndSeek(PvpGame):
         super().__init__(
             name = "hide",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -73,4 +70,4 @@ class HideAndSeek(PvpGame):
             Game: `Game` instance that holds the data.
         """
         data["kills"] = data["hider_kills"] + data["seeker_kills"]
-        return super().from_api("hide", False, data)
+        return super().from_api(data)

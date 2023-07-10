@@ -1,16 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
 
-class Skywars(PvpGame):
+class Skywars(AllTimePvpGame):
     """Data for Skywars"""
-    __slots__ = PvpGame.__slots__ + ("_mystery_chests_destroyed", "_ores_mined", "_spells_used")
+    __slots__ = AllTimePvpGame.__slots__ + ("_mystery_chests_destroyed", "_ores_mined", "_spells_used")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -24,7 +22,6 @@ class Skywars(PvpGame):
         super().__init__(
             name = "sky",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -71,7 +68,3 @@ class Skywars(PvpGame):
             f"Ores Mined: {self.ores_mined}\n"
             f"Spells Used: {self.spells_used}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("sky", False, data)

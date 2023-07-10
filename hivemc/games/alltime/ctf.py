@@ -1,16 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
 
-class CaptureTheFlag(PvpGame):
+class CaptureTheFlag(AllTimePvpGame):
     """Data for Capture The Flag"""
-    __slots__ = PvpGame.__slots__ + ("_assists", "_flags_captured", "_flags_returned")
+    __slots__ = AllTimePvpGame.__slots__ + ("_assists", "_flags_captured", "_flags_returned")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -24,7 +22,6 @@ class CaptureTheFlag(PvpGame):
         super().__init__(
             name = "ctf",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -71,7 +68,3 @@ class CaptureTheFlag(PvpGame):
             f"Flags Captured: {self.flags_captured}\n"
             f"Flags Returned: {self.flags_returned}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("ctf", False, data)

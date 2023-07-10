@@ -23,7 +23,6 @@ class Game:
 
     __slots__ = (
         "_name",
-        "_UUID",
         "_monthly",
         "_xp",
         "_played",
@@ -34,7 +33,6 @@ class Game:
         self,
         *,
         name: str,
-        UUID: str, 
         monthly: bool, # True if data is monthly, False if data is alltime
         xp: int,
         played: int, 
@@ -42,7 +40,6 @@ class Game:
         first_played: int
     ):
         self._name = name
-        self._UUID = UUID
         self._monthly = monthly
         self._xp = xp
         self._played = played
@@ -57,14 +54,6 @@ class Game:
             str: The abbreviated name of the gamemode
         """
         return self._name
-    
-    @property
-    def uuid(self) -> str:
-        """The Universal Unique Identifier (UUID) of the player.
-
-        Returns:
-            str: The UUID of the player.
-        """
         
     @property
     def gamemode(self) -> GameInfo:

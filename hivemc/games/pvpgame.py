@@ -9,7 +9,6 @@ class PvpGame(Game):
         self,
         *,
         name: str, 
-        UUID: str,
         monthly: bool,
         xp: int,
         played: int, 
@@ -20,7 +19,6 @@ class PvpGame(Game):
     ):
         super().__init__(
             name = name,
-            UUID = UUID,
             monthly = monthly,
             xp = xp,
             played = played,

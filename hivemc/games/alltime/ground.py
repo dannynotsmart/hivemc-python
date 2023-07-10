@@ -1,16 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
 
-class GroundWars(PvpGame):
+class GroundWars(AllTimePvpGame):
     """Data for Ground Wars"""
-    __slots__ = PvpGame.__slots__ + ("_blocks_destroyed", "_blocks_placed", "_projectiles_fired")
+    __slots__ = AllTimePvpGame.__slots__ + ("_blocks_destroyed", "_blocks_placed", "_projectiles_fired")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -24,7 +22,6 @@ class GroundWars(PvpGame):
         super().__init__(
             name = "ground",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -71,7 +68,3 @@ class GroundWars(PvpGame):
             f"Blocks Placed: {self.blocks_placed}\n"
             f"Projectiles Fired: {self.projectiles_fired}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("ground", False, data)

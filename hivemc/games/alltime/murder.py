@@ -1,16 +1,14 @@
-from ..pvpgame import PvpGame
+from .pvpgame import AllTimePvpGame
 
 
-class MurderMystery(PvpGame):
+class MurderMystery(AllTimePvpGame):
     """Data for Murder Mystery"""
-    __slots__ = PvpGame.__slots__ + ("_coins", "_murders", "_murderer_eliminations", "_uncapped_xp", "_prestige")
+    __slots__ = AllTimePvpGame.__slots__ + ("_coins", "_murders", "_murderer_eliminations", "_uncapped_xp", "_prestige")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -26,7 +24,6 @@ class MurderMystery(PvpGame):
         super().__init__(
             name = "murder",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -112,4 +109,4 @@ class MurderMystery(PvpGame):
             Game: `Game` instance that holds the data.
         """
         data["kills"] = data["murders"] + data["murderer_eliminations"]
-        return super().from_api("murder", False, data)
+        return super().from_api(data)

@@ -1,16 +1,14 @@
-from ..game import Game
+from .game import AllTimeGame
 
 
-class BlockDrop(Game):
+class BlockDrop(AllTimeGame):
     """Data for Block Drop"""
-    __slots__ = Game.__slots__ + ("_deaths", "_blocks_destroyed", "_powerups_collected", "_vaults_used")
+    __slots__ = AllTimeGame.__slots__ + ("_deaths", "_blocks_destroyed", "_powerups_collected", "_vaults_used")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -23,7 +21,6 @@ class BlockDrop(Game):
         super().__init__(
             name = "drop",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -79,7 +76,3 @@ class BlockDrop(Game):
             f"Powerups Collected: {self.powerups_collected}\n"
             f"Vaults Used: {self.vaults_used}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("drop", False, data)

@@ -1,16 +1,14 @@
-from ..game import Game
+from .game import AllTimeGame
 
 
-class BlockParty(Game):
+class BlockParty(AllTimeGame):
     """Data for Block Party"""
-    __slots__ = Game.__slots__ + ("_powerups_collected", "_rounds_survived")
+    __slots__ = AllTimeGame.__slots__ + ("_powerups_collected", "_rounds_survived")
 
     def __init__(
         self,
         *,
-        name: str,
         UUID: str,
-        monthly: bool,
         xp: int,
         played: int, 
         victories: int,
@@ -21,7 +19,6 @@ class BlockParty(Game):
         super().__init__(
             name = "party",
             UUID = UUID,
-            monthly = monthly,
             xp = xp,
             played = played,
             victories = victories,
@@ -55,7 +52,3 @@ class BlockParty(Game):
             f"\nPowerups Collected: {self.powerups_collected}\n"
             f"Rounds Survived: {self.rounds_survived}\n"
         )
-    
-    @classmethod
-    def from_api(cls, data: dict):
-        return super().from_api("party", False, data)
